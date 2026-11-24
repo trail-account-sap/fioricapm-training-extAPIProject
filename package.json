@@ -1,0 +1,36 @@
+{
+  "name": "extAPIProject",
+  "version": "1.0.0",
+  "dependencies": {
+    "@cap-js/hana": "^2",
+    "@sap-cloud-sdk/connectivity": "^4",
+    "@sap-cloud-sdk/http-client": "^4",
+    "@sap-cloud-sdk/resilience": "^4",
+    "@sap/cds": "^9"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^2.4",
+    "@sap/cds-dk": "^10"
+  },
+  "scripts": {
+    "start": "cds-serve"
+  },
+  "private": true,
+  "cds": {
+    "requires": {
+      "northwind": {
+        "kind": "odata-v2",
+        "model": "srv/external/northwind",
+        "[hybrid]": {
+          "credentials": {
+            "destination": "Northwind",
+            "path": "/V2/Northwind/Northwind.svc"
+          }
+        }
+      },
+      "[production]": {
+        "db": "hana"
+      }
+    }
+  }
+}
